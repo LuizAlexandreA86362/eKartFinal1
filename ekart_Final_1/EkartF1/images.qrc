@@ -1,0 +1,15 @@
+<RCC>
+    <qresource prefix="/">
+        <file>power.png</file>
+        <file>background.jpg</file>
+        <file>left.png</file>
+        <file>right.png</file>
+        <file>temp.png</file>
+        <file>speedometer.png</file>
+        <file>distancemeter.png</file>
+        <file>logout</file>
+        <file>red.png</file>
+        <file>grey-d.png</file>
+        <file>grey-e.png</file>
+    </qresource>
+</RCC>
