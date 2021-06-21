@@ -10,7 +10,6 @@
 #define UI_SECWINDOW_H
 
 #include <QtCore/QVariant>
-#include <QtGui/QIcon>
 #include <QtWidgets/QApplication>
 #include <QtWidgets/QDialog>
 #include <QtWidgets/QLCDNumber>
@@ -23,8 +22,6 @@ class Ui_SecWindow
 {
 public:
     QLabel *label;
-    QPushButton *left_btt;
-    QPushButton *right_btt;
     QPushButton *logout_btt;
     QPushButton *horn_btt;
     QPushButton *cr_btt;
@@ -36,9 +33,12 @@ public:
     QLabel *label_5;
     QLabel *label_7;
     QLabel *label_8;
-    QLCDNumber *lcdNumber;
-    QLCDNumber *lcdNumber_2;
-    QLCDNumber *lcdNumber_3;
+    QLCDNumber *lcdspeed;
+    QLCDNumber *lcdtemp;
+    QLCDNumber *lcddistance;
+    QPushButton *left_btt;
+    QPushButton *right_btt;
+    QLabel *label_6;
 
     void setupUi(QDialog *SecWindow)
     {
@@ -125,32 +125,6 @@ public:
 "	border: none;\n"
 "	background-repeat: none;\n"
 "}"));
-        left_btt = new QPushButton(SecWindow);
-        left_btt->setObjectName(QStringLiteral("left_btt"));
-        left_btt->setGeometry(QRect(20, 40, 61, 30));
-        left_btt->setStyleSheet(QLatin1String("#left_btt\n"
-"{\n"
-"background-color: transparent;\n"
-"background:none;\n"
-"border:none;\n"
-"background-repeat: none;\n"
-"}"));
-        QIcon icon;
-        icon.addFile(QStringLiteral(":/grey-e.png"), QSize(), QIcon::Normal, QIcon::Off);
-        icon.addFile(QStringLiteral(":/left.png"), QSize(), QIcon::Normal, QIcon::On);
-        icon.addFile(QStringLiteral(":/left.png"), QSize(), QIcon::Disabled, QIcon::On);
-        left_btt->setIcon(icon);
-        right_btt = new QPushButton(SecWindow);
-        right_btt->setObjectName(QStringLiteral("right_btt"));
-        right_btt->setGeometry(QRect(90, 40, 61, 30));
-        right_btt->setStyleSheet(QLatin1String("#right_btt\n"
-"{\n"
-"background-color: transparent;\n"
-"border-image: url(:right.png);\n"
-"background:none;\n"
-"border:none;\n"
-"background-repeat: none;\n"
-"}"));
         logout_btt = new QPushButton(SecWindow);
         logout_btt->setObjectName(QStringLiteral("logout_btt"));
         logout_btt->setGeometry(QRect(460, 280, 51, 51));
@@ -165,7 +139,7 @@ public:
         logout_btt->setIconSize(QSize(15, 15));
         horn_btt = new QPushButton(SecWindow);
         horn_btt->setObjectName(QStringLiteral("horn_btt"));
-        horn_btt->setGeometry(QRect(260, 200, 131, 91));
+        horn_btt->setGeometry(QRect(340, 190, 131, 91));
         horn_btt->setStyleSheet(QLatin1String("#horn_btt\n"
 "{\n"
 "background-color: transparent;\n"
@@ -176,11 +150,11 @@ public:
 "}"));
         cr_btt = new QPushButton(SecWindow);
         cr_btt->setObjectName(QStringLiteral("cr_btt"));
-        cr_btt->setGeometry(QRect(240, 80, 171, 30));
+        cr_btt->setGeometry(QRect(340, 100, 171, 30));
         cr_btt->setStyleSheet(QStringLiteral(""));
         rever_btt = new QPushButton(SecWindow);
         rever_btt->setObjectName(QStringLiteral("rever_btt"));
-        rever_btt->setGeometry(QRect(240, 130, 171, 30));
+        rever_btt->setGeometry(QRect(340, 140, 171, 30));
         rever_btt->setStyleSheet(QStringLiteral(""));
         distance_label = new QLabel(SecWindow);
         distance_label->setObjectName(QStringLiteral("distance_label"));
@@ -313,15 +287,48 @@ public:
 "	border: none;\n"
 "	background-repeat: none;\n"
 "}"));
-        lcdNumber = new QLCDNumber(SecWindow);
-        lcdNumber->setObjectName(QStringLiteral("lcdNumber"));
-        lcdNumber->setGeometry(QRect(100, 140, 64, 23));
-        lcdNumber_2 = new QLCDNumber(SecWindow);
-        lcdNumber_2->setObjectName(QStringLiteral("lcdNumber_2"));
-        lcdNumber_2->setGeometry(QRect(420, 20, 64, 23));
-        lcdNumber_3 = new QLCDNumber(SecWindow);
-        lcdNumber_3->setObjectName(QStringLiteral("lcdNumber_3"));
-        lcdNumber_3->setGeometry(QRect(100, 220, 64, 23));
+        lcdspeed = new QLCDNumber(SecWindow);
+        lcdspeed->setObjectName(QStringLiteral("lcdspeed"));
+        lcdspeed->setGeometry(QRect(100, 140, 64, 23));
+        lcdtemp = new QLCDNumber(SecWindow);
+        lcdtemp->setObjectName(QStringLiteral("lcdtemp"));
+        lcdtemp->setGeometry(QRect(420, 20, 64, 23));
+        lcddistance = new QLCDNumber(SecWindow);
+        lcddistance->setObjectName(QStringLiteral("lcddistance"));
+        lcddistance->setGeometry(QRect(100, 220, 64, 23));
+        left_btt = new QPushButton(SecWindow);
+        left_btt->setObjectName(QStringLiteral("left_btt"));
+        left_btt->setGeometry(QRect(20, 40, 61, 31));
+        left_btt->setStyleSheet(QLatin1String("#left_btt\n"
+"{\n"
+"background-color: transparent;\n"
+"border-image: url(:grey-e.png);\n"
+"background:none;\n"
+"border:none;\n"
+"background-repeat: none;\n"
+"}\n"
+"#left_btt:pressed\n"
+"{\n"
+"	border-image: url(:left.png);\n"
+"}"));
+        right_btt = new QPushButton(SecWindow);
+        right_btt->setObjectName(QStringLiteral("right_btt"));
+        right_btt->setGeometry(QRect(90, 40, 61, 31));
+        right_btt->setStyleSheet(QLatin1String("#right_btt\n"
+"{\n"
+"background-color: transparent;\n"
+"border-image: url(:grey-d.png);\n"
+"background:none;\n"
+"border:none;\n"
+"background-repeat: none;\n"
+"}\n"
+"#right_btt:pressed\n"
+"{\n"
+"	border-image: url(:right.png);\n"
+"}"));
+        label_6 = new QLabel(SecWindow);
+        label_6->setObjectName(QStringLiteral("label_6"));
+        label_6->setGeometry(QRect(190, 270, 121, 51));
 
         retranslateUi(SecWindow);
 
@@ -332,8 +339,6 @@ public:
     {
         SecWindow->setWindowTitle(QApplication::translate("SecWindow", "eKart", nullptr));
         label->setText(QApplication::translate("SecWindow", "eKart", nullptr));
-        left_btt->setText(QString());
-        right_btt->setText(QString());
         logout_btt->setText(QString());
         horn_btt->setText(QApplication::translate("SecWindow", "HORN", nullptr));
         cr_btt->setText(QApplication::translate("SecWindow", "CRUISE CONTROL", nullptr));
@@ -345,6 +350,9 @@ public:
         label_5->setText(QString());
         label_7->setText(QApplication::translate("SecWindow", "m", nullptr));
         label_8->setText(QApplication::translate("SecWindow", "\302\272C", nullptr));
+        left_btt->setText(QString());
+        right_btt->setText(QString());
+        label_6->setText(QApplication::translate("SecWindow", "TextLabel", nullptr));
     } // retranslateUi
 
 };

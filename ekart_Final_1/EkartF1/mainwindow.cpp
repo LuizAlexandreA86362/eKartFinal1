@@ -1,11 +1,7 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
-#include <QtSerialPort/QSerialPort>
 #include <QDebug>
 #include <QMessageBox>
-#include "string"
-
-QSerialPort* serial;
 
 int flag=0;
 
@@ -29,7 +25,7 @@ MainWindow::MainWindow(QWidget *parent) :
     {
         qDebug()<<"serial is open";
 
-        connect(serial, SIGNAL(readyRead()),this, SLOT(code()));
+        connect(serial, SIGNAL(readyRead()),this, SLOT(login()));
     }
 }
 
@@ -39,9 +35,11 @@ MainWindow::~MainWindow()
     serial->close();
 }
 
-void MainWindow::code()
+
+void MainWindow::login()
 {
     QByteArray ba;
+
     ba = serial->readAll();
 
     if(ba!="n\n") //cmd for login with sucess
@@ -65,7 +63,9 @@ void MainWindow::on_powerON_clicked()
      else {
             QMessageBox::about(this,"Sucess","Welcome to the eKart!");
             hide();
-            sec =   new SecWindow(this);
-            sec->show();
+            sec =   new SecWindow(serial,this);
+            sec->exec();
+            show();
+            ui->code_label_2->setText(" ");
      }
 }
